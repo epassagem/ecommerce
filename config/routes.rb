@@ -1,4 +1,8 @@
 Teste::Application.routes.draw do
+  resources :users
+
+  resources :clients
+
   resources :orders
 
   resources :line_items

@@ -11,9 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113170114) do
+ActiveRecord::Schema.define(version: 20140113195032) do
 
   create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", force: true do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.integer  "number"
+    t.string   "complement"
+    t.string   "bairro"
+    t.string   "uf"
+    t.string   "city"
+    t.string   "country"
+    t.integer  "cep"
+    t.integer  "doc"
+    t.integer  "doc2"
+    t.string   "name"
+    t.integer  "tel"
+    t.integer  "cel"
+    t.date     "date_born"
+    t.string   "sex"
+    t.boolean  "news"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +67,13 @@ ActiveRecord::Schema.define(version: 20140113170114) do
     t.text     "description"
     t.string   "image_url"
     t.decimal  "price",       precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
