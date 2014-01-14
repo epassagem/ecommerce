@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113213541) do
+ActiveRecord::Schema.define(version: 20140114134230) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -19,26 +19,38 @@ ActiveRecord::Schema.define(version: 20140113213541) do
   end
 
   create_table "clients", force: true do |t|
-    t.integer  "user_id"
-    t.string   "street"
-    t.integer  "number"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "name",                   default: "", null: false
+    t.integer  "doc1",                   default: 0,  null: false
+    t.string   "doc2"
+    t.integer  "phone_area_code",        default: 0,  null: false
+    t.integer  "phone_number",           default: 0,  null: false
+    t.integer  "cell"
+    t.date     "date_born",                           null: false
+    t.string   "sex",                    default: "", null: false
+    t.boolean  "news",                                null: false
+    t.string   "street",                 default: "", null: false
+    t.integer  "number",                 default: 0,  null: false
     t.string   "complement"
-    t.string   "bairro"
-    t.string   "uf"
-    t.string   "city"
-    t.string   "country"
-    t.integer  "cep"
-    t.integer  "doc"
-    t.integer  "doc2"
-    t.string   "name"
-    t.integer  "tel"
-    t.integer  "cel"
-    t.date     "date_born"
-    t.string   "sex"
-    t.boolean  "news"
+    t.string   "district",               default: "", null: false
+    t.string   "city",                   default: "", null: false
+    t.string   "state",                  default: "", null: false
+    t.integer  "postal_code",            default: 0,  null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "clients", ["email"], name: "index_clients_on_email", unique: true
+  add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
 
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
