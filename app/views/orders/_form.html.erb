@@ -10,19 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+<%= current_client.street%>
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name, size: 40 , :value => current_client.email%>
+    <%= f.text_field :name, size: 40 , :value => current_client.name%>
+    <%= f.text_field :email, size: 40 , :value => current_client.email%>
+    <%= f.text_field :address, size: 40 , :value => current_client.street%>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address, rows: 3, cols: 40 %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, size: 40 %>
-  </div>
+
   <div class="field">
     <%= f.label :pay_type %><br>
     <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: 'Select a payment method' %>
