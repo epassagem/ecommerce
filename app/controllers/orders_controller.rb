@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    
     if @cart.line_items.empty?
       redirect_to store_url, notice: "Seu carrinho está vazio"
       return
@@ -35,6 +36,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+    
+
+    
+    
 
     respond_to do |format|
       if @order.save

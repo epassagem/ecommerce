@@ -1,6 +1,14 @@
 Teste::Application.routes.draw do
 
+  resources :ordem_compras
+
   devise_for :clients
+  
+
+  
+  get "checkout/:id", to: "line_items#checkout", as: "checkout"
+  post "notifications", to: "notifications#create", as: "notifications"
+  get "processing", to: "products#processing", as: "processing"
   
   get 'admin' => 'admin#index'
   controller :sessions do

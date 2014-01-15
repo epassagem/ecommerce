@@ -24,13 +24,33 @@ class LineItemsController < ApplicationController
   # GET /line_items/1/edit
   def edit
   end
+  
+  def checkout
+    @line_items = LineItem.all
+    
+       
+       
+     @cart = Cart.find(params[:id])
+     payment = PagSeguro::PaymentRequest.new
+        # payment.abandon_url = root_url(r: "abandoned")
+         payment.notification_url = notifications_url
+        # payment.redirect_url = processing_url
+     @line_items.each do |item|
+       @produto = Product.find_by_id(item.product_id)
+      if item.cart_id == @cart.id
+        payment.items << { id: item.product_id, description: @produto.description, amount: @produto.price}
+      end
+      
+    end
+    response = payment.register
+ 
+  end
 
   # POST /line_items
   # POST /line_items.json
   def create
     product = Product.find(params[:product_id])
-    # @line_item = LineItem.new(line_item_params)
-    #@line_item = @cart.line_items.build(product: product)
+    
     @line_item = @cart.add_product(product.id)
     respond_to do |format|
       if @line_item.save

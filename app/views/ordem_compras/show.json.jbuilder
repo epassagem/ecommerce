@@ -1,0 +1,1 @@
+json.extract! @ordem_compra, :id, :order_id, :name, :email, :address_zipcode, :address_street, :address_number, :address_complement, :address_neighbourhood, :address_city, :address_state, :address_country, :phone_area_code, :phone_number, :created_at, :updated_at

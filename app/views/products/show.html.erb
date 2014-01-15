@@ -19,6 +19,6 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
-
+  <%= link_to "Comprar", checkout_path(@product), class: "buy" %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
