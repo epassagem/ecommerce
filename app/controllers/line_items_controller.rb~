@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  skip_before_action :authorize
+
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
@@ -22,13 +24,36 @@ class LineItemsController < ApplicationController
   # GET /line_items/1/edit
   def edit
   end
+  
+  def checkout
+    @line_items = LineItem.all
+    
+       
+       
+     @cart = Cart.find(params[:id])
+     payment = PagSeguro::PaymentRequest.new
+        payment.notification_url = notifications_url
+        payment.redirect_url = processing_url
+     @line_items.each do |item|
+       @produto = Product.find_by_id(item.product_id)
+      if item.cart_id == @cart.id
+        payment.items << { id: item.product_id, description: @produto.description, amount: @produto.price}
+      end
+      
+    end
+    response = payment.register
+ if response.errors.any?
+      raise response.errors.join("\n")
+    else
+      redirect_to response.url
+    end
+  end
 
   # POST /line_items
   # POST /line_items.json
   def create
     product = Product.find(params[:product_id])
-    # @line_item = LineItem.new(line_item_params)
-    #@line_item = @cart.line_items.build(product: product)
+    
     @line_item = @cart.add_product(product.id)
     respond_to do |format|
       if @line_item.save

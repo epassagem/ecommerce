@@ -17,7 +17,7 @@
     </tr>
   </table>
 
-<%= button_to "Checkout", carts_checkout_path, method: :get %>
+<%= button_to "Checkout", carts_checkout_path(@cart), method: :get %>
 
 
 <%end%>

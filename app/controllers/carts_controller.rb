@@ -11,9 +11,15 @@ class CartsController < ApplicationController
   def index
     @carts = Cart.all
   end
-  
-  
-
+  def checkout
+    @c = session[:cart_id]
+    @carts = Cart.all
+    @carts.each do |carro|
+      if carro.id == @c
+        @cart = carro
+      end
+    end
+  end
   # GET /carts/1
   # GET /carts/1.json
   def show
