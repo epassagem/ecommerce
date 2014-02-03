@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115130758) do
+ActiveRecord::Schema.define(version: 20140131183903) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -19,38 +19,49 @@ ActiveRecord::Schema.define(version: 20140115130758) do
   end
 
   create_table "clients", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "name",                   default: "", null: false
-    t.integer  "doc1",                   default: 0,  null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "name",                   default: "",    null: false
+    t.integer  "doc1",                   default: 0,     null: false
     t.string   "doc2"
-    t.integer  "phone_area_code",        default: 0,  null: false
-    t.integer  "phone_number",           default: 0,  null: false
+    t.integer  "phone_area_code",        default: 0,     null: false
+    t.integer  "phone_number",           default: 0,     null: false
     t.integer  "cell"
-    t.date     "date_born",                           null: false
-    t.string   "sex",                    default: "", null: false
-    t.boolean  "news",                                null: false
-    t.string   "street",                 default: "", null: false
-    t.integer  "number",                 default: 0,  null: false
+    t.date     "date_born",                              null: false
+    t.string   "sex",                    default: "",    null: false
+    t.boolean  "news",                                   null: false
+    t.string   "street",                 default: "",    null: false
+    t.integer  "number",                 default: 0,     null: false
     t.string   "complement"
-    t.string   "district",               default: "", null: false
-    t.string   "city",                   default: "", null: false
-    t.string   "state",                  default: "", null: false
-    t.integer  "postal_code",            default: 0,  null: false
+    t.string   "district",               default: "",    null: false
+    t.string   "city",                   default: "",    null: false
+    t.string   "state",                  default: "",    null: false
+    t.integer  "postal_code",            default: 0,     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
+
+  create_table "lectures", force: true do |t|
+    t.integer  "product_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "video"
+    t.string   "img"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "line_items", force: true do |t|
     t.integer  "product_id"
@@ -101,11 +112,22 @@ ActiveRecord::Schema.define(version: 20140115130758) do
     t.decimal  "price",       precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "video"
+    t.boolean  "course"
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+  end
+
+  create_table "videos", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

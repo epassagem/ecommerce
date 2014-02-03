@@ -1,29 +1,12 @@
 class ProductsController < ApplicationController
+  before_action :authorize
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
-  end
-  
-  def checkout
-     @product = Product.all
-     payment = PagSeguro::PaymentRequest.new
-     #    payment.abandon_url = root_url(r: "abandoned")
-     #    payment.notification_url = notifications_url
-     #    payment.redirect_url = processing_url
-     payment.items << { id: 1, description: "bla", amount: 1650}
-     payment.items << { id: 2, description: "blabla", amount: 130}
-     
-    response = payment.register
-    if response.errors.any?
-      raise response.errors.join("\n")
-    else
-      redirect_to response.url
-    end
-  end
-  
+  end  
   
   def who_bought
     @product = Product.find(params[:id])

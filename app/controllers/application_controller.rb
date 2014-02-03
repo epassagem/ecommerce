@@ -13,16 +13,15 @@ class ApplicationController < ActionController::Base
 
 
   protected
-   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :doc1, :doc2, :phone_area_code, :phone_number, :cell, :date_born, :sex, :news, :street, :number, :complement, :district, :city, :state, :postal_code, :email, :password, :password_confirmation, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :doc1, :doc2, :phone_area_code, :phone_number, :cell, :date_born, :sex, :news, :street, :number, :complement, :district, :city, :state, :postal_code, :email, :password, :password_confirmation, :current_password) }
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :doc1, :doc2, :phone_area_code, :phone_number, :cell, :date_born, :sex, :news, :street, :number, :complement, :district, :city, :state, :postal_code, :email, :password, :password_confirmation, :remember_me) }
+      devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :doc1, :doc2, :phone_area_code, :phone_number, :cell, :date_born, :sex, :news, :street, :number, :complement, :district, :city, :state, :postal_code, :email, :password, :password_confirmation, :current_password) }
     end
-
-  def authorize
-    if User.find_by(id: session[:user_id])
-      redirect_to login_url, notice: "Please log in"      
+    def authorize
+      if User.find_by(id: session[:user_id])
+        redirect_to login_url, notice: "Please log in"      
+      end
     end
-
-  end
 end
+

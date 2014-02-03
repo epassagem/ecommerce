@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.ui.effect-blind
 //= require turbolinks
+//= require mediaelement_rails
 //= require_tree .

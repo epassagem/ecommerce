@@ -1,5 +1,13 @@
 Teste::Application.routes.draw do
 
+  
+
+ 
+
+  resources :videos
+
+  resources :lectures
+
   devise_for :clients
   
   get "carts/checkout", to:"carts#checkout"
@@ -24,6 +32,7 @@ Teste::Application.routes.draw do
 
   get "store/index"
   resources :products do
+    resources :lectures
     get :who_bought, on: :member
   end
   

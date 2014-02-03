@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @lecture.product_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lecture.name %>
+</p>
+  <video width="320" height="240" controls>
+  <source src="<%= f.file_field :video %>" type="video/mp4">
+
+Your browser does not support the video tag.
+</video> 
+<p>
+  <strong>Description:</strong>
+  <%= @lecture.description %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @lecture.video %>
+</p>
+
+<p>
+  <strong>Img:</strong>
+  <%= @lecture.img %>
+</p>
+
+<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
+<%= link_to 'Back', lectures_path %>

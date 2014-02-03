@@ -5,7 +5,11 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
-
+Streamio.configure do |config|
+  config.username = "escoladainteligencia"
+  config.password = "9f26335497607221526b4827a30d1e "
+  # config.skip_ssl_verification = true # can be used if you can't escape OpenSSL::SSL::SSLError
+end
 module Teste
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -19,5 +23,6 @@ module Teste
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    
   end
 end

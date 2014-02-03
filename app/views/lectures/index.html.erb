@@ -1,0 +1,35 @@
+<h1>Listing lectures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Video</th>
+      <th>Img</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lectures.each do |lecture| %>
+      <tr>
+        <td><%= lecture.product_id %></td>
+        <td><%= lecture.name %></td>
+        <td><%= lecture.description %></td>
+        <td><%= video_tag lecture.video %></td>
+        <td><%= image_tag lecture.img %></td>
+        <td><%= link_to 'Show', lecture %></td>
+        <td><%= link_to 'Edit', edit_lecture_path(lecture) %></td>
+        <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lecture', new_lecture_path %>

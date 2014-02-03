@@ -1,0 +1,61 @@
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="container" >
+<% @products.each_slice(4) do |product| %>
+    <div class="row" id="produto_catalogo">
+      <div class="col-xs-3" >
+          <div class="row">
+            <%if product[0].present?%>
+              <div class="thumbnail" id="thumb">
+                <h3><%= product[0].title %></h3>
+                <%= image_tag product[0].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[0].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[0]), remote: true %> </div>
+               <hr>
+              </div>
+            <%end%>
+          </div>
+          
+      <div class="col-xs-3">
+          <div class="row">
+            <%if product[1].present?%>
+              <div class="thumbnail" id="thumb">
+              <h3><%= product[1].title %></h3>
+                <%= image_tag product[1].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[1].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[1]), remote: true %> </div>   
+                <hr>
+              </div>
+            <%end%>
+          </div>
+   
+          
+          <div class="col-xs-3">
+          <div class="row">
+            <%if product[2].present?%>
+              <div class="thumbnail" id="thumb">
+              <h3><%= product[2].title %></h3>
+                <%= image_tag product[2].image_url.thumb.url , :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[2].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[2]), remote: true %> </div>
+              </div>
+            <%end%>
+          </div>
+    
+          <div class="col-xs-3">
+          <div class="row">
+            <%if product[3].present?%>
+              <div class="thumbnail">
+              <h3><%= product[3].title %></h3>
+                <%= image_tag product[3].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[3].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[3]), remote: true %> </div>
+                 <hr>
+              </div>
+            <%end%>
+          </div>
+    </div>
+<% end %>
+</div>

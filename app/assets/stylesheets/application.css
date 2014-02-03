@@ -7,7 +7,28 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
+ *= require_twitter-bootstrap-rails
+ *= require mediaelement_rails
+ * and optionally:
+ *= require mediaelement_rails/mejs-skins
  *= require_self
  *= require_tree .
  */
+#container{
+   position: relative;
+   width: 80%;
+}
+#thumb{
+   position: relative;
+   margin-left: 5%;
+   margin-right: 5%;
+}
+#editar{
+    position: relative;
+    padding-left: 23%;
+}
+#add_to_cart{
+    position: relative;
+    width: 150px;
+    
+}

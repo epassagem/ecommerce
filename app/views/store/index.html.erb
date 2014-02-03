@@ -1,19 +1,97 @@
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
-  
-  <h1>Your Pragmatic Catalog</h1>
-  <% cache ['store', Product.latest] do %>
-    <% @products.each do |product| %>
-      <% cache ['entry', product] do %>
-        <div class="entry">
-          <%= image_tag(product.image_url) %>
-          <h3><%= product.title %></h3>
-          <%= sanitize(product.description) %>
-          <div class="price_line">
-            <span class="price"><%= number_to_currency(product.price) %></span>
-            <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %> </div>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
+
+<div class="container" >
+<% @products.each_slice(4) do |product| %>
+    <div class="row" id="produto_catalogo">
+      <div class="col-xs-3" >
+          <div class="row">
+            <%if product[0].present?%>
+              <div class="thumbnail" id="thumb">
+                <h3><%= product[0].title %></h3>
+                <%= image_tag product[0].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[0].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[0]), remote: true %>
+                <%  if current_client.try(:admin?)%>
+                  <hr>
+                  <div class="row" id="editar">
+                    <div class="col-xs-3"><%= link_to 'Exibir', product[0] %></div>
+                    <div class="col-xs-3"><%= link_to 'Editar', edit_product_path(product[0])%></div>
+                    <div class="col-xs-3"><%= link_to 'Excluir', product[0], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                <% end %>  
+              </div>
+            <%end%>
+          </div>      
+      </div>
+          
+      <div class="col-xs-3">
+          <div class="row">
+            <%if product[1].present?%>
+              <div class="thumbnail" id="thumb">
+              <h3><%= product[1].title %></h3>
+                <%= image_tag product[1].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[1].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[1]), remote: true %>
+                <%  if current_client.try(:admin?)%>
+                  <hr>
+                  <div class="row" id="editar">
+                    <div class="col-xs-3"><%= link_to 'Exibir', product[1] %></div>
+                    <div class="col-xs-3"><%= link_to 'Editar', edit_product_path(product[1])%></div>
+                    <div class="col-xs-3"><%= link_to 'Excluir', product[1], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                <% end %>  
+              </div>   
+                
+              </div>
+            <%end%>
+          </div>
+   
+          
+          <div class="col-xs-3">
+          <div class="row">
+            <%if product[2].present?%>
+              <div class="thumbnail" id="thumb">
+                <h3><%= product[2].title %></h3>
+                  <%= image_tag product[2].image_url.thumb.url , :class =>"thumbnail" %>
+                  <p id="desc_curso"><%= product[2].description %></p>
+                  <%= button_to 'Add to Cart', line_items_path(product_id: product[2]), remote: true %>
+                  <%  if current_client.try(:admin?)%>
+                  <hr>
+                  <div class="row" id="editar">
+                    <div class="col-xs-3"><%= link_to 'Lições', product_lectures_path(product[2]) %></div>
+                    <div class="col-xs-3"><%= link_to 'Exibir', product[2] %></div>
+                    <div class="col-xs-3"><%= link_to 'Editar', edit_product_path(product[2])%></div>
+                    <div class="col-xs-3"><%= link_to 'Excluir', product[2], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                <% end %> 
+              </div>
+              </div>
+            <%end%>
+          </div>
+    
+          <div class="col-xs-3">
+          <div class="row">
+            <%if product[3].present?%>
+              <div class="thumbnail" id="thumb">
+                <h3><%= product[3].title %></h3>
+                <%= image_tag product[3].image_url.thumb.url, :class =>"thumbnail" %>
+                <p id="desc_curso"><%= product[3].description %></p>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product[3]), remote: true %>
+                  <%  if current_client.try(:admin?)%>
+                  <hr>
+                  <div class="row" id="editar">
+                    <div class="col-xs-3"><%= link_to 'Exibir', product[3] %></div>
+                    <div class="col-xs-3"><%= link_to 'Editar', edit_product_path(product[3])%></div>
+                    <div class="col-xs-3"><%= link_to 'Excluir', product[3], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                  </div>
+                <% end %> 
+              </div>
+                 
+              </div>
+            <%end%>
+          </div>
+    </div>
+<% end %>
+</div>
